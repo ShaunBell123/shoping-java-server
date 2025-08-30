@@ -1,7 +1,16 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.graalvm.buildtools.native' version '0.11.0'
+
+    id ("org.graalvm.python") version "24.2.2"
+
+    id 'org.springframework.boot' version '3.5.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+graalPy {
+    packages = ["beautifulsoup4==4.12.3", "selenium==4.35.0"] as Set
+    externalDirectory = file("${project.projectDir}/python-resources")
 }
 
 repositories {
@@ -9,20 +18,15 @@ repositories {
 }
 
 dependencies {
+
+    implementation 'org.graalvm.sdk:graal-sdk:24.2.2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
     testImplementation 'junit:junit:4.13.2'
-}
 
-graalvmNative {
-    binaries {
-        main {
-            imageName = 'shopserver'
-            mainClass = 'shopserver.Main'
-            debug = true
-            verbose = true
-        }
-    }
 }
-
 
 application {
     mainClass = 'com.shopserver.Main'

@@ -1,0 +1,1 @@
+FROM ghcr.io/graalvm/jdk-community:24
