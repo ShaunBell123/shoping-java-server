@@ -1,4 +1,13 @@
-class TescoScraper:
+from Scraper import Scraper
+
+class TescoScraper(Scraper):
+
+    def __init__(self):
+        super().__init__(site_name="Tesco")
     
-    def scrape(self, product_name):
-        return f"{product_name}"
+    def scrape(self):
+
+        user_agemt = self.user_agent()
+
+        return f"{user_agemt} from {self.site_name}."
+
